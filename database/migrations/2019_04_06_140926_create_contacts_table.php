@@ -18,7 +18,8 @@ class CreateContactsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->string('address');
             $table->timestamps();
         });
     }
