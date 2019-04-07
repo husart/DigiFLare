@@ -103,6 +103,7 @@
 
             @if (Route::has('login'))
                 <div class="top-right links">
+                    <a href="{{ route('join') }}">Join</a>
                      <a href="{{ route('list') }}">List</a>
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>

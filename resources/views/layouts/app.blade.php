@@ -44,6 +44,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+                         <li><a href="{{ route('join') }}"><strong>Join</strong></a></li>
                         <li><a href="{{ route('list') }}">List</a></li>
                         @if (Auth::guest())
 

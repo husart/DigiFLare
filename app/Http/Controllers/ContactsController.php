@@ -78,6 +78,12 @@ class ContactsController extends Controller
      */
     public function join_as_contact(Request $request) {
         $input_data = $request->input();
+       
+        $contact = Contact::where("email", '=', $input_data['email'])->first();
+        if($contact) {
+            return view('contacts.thank_you_for_joining');
+        }
+       // if(Contact)
         $input_data['user_id'] = 1; // fixed value
         $input_data['phone'] = "0000000000"; // just a default value - field cannot be emty
         $input_data['address'] = "MyAddress";// just a default value - field cannot be emty
