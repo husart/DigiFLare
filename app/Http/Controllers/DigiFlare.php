@@ -79,10 +79,10 @@ class DigiFlare extends Controller
     public function sendEmail() {
     	 $contacts = Contact::get();
     	 $toall = '';
-    	 foreach ($contacts as $key => $contact) {
+ $alert = Alerts::where('status', '=', 1)->first();
+     	 foreach ($contacts as $key => $contact) {
     	 	$to_name = $contact->name;
 			$to_email = $contact->email;
-			$alert = Alerts::where('status', '=', 1)->first();
 			Mail::send('emails', ['contact' => $contact, 'alert' =>$alert], function ($m) use ($contact) {
 	            $m->from('digiflareor@gmail.com', 'Alert from DigiFLare');
 
