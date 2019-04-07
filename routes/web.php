@@ -23,8 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/contacts', 'ContactsController@index')->name('contacts');;
 Route::get('/join', 'ContactsController@join_from_outside')->name('join');
 Route::get('/test', 'DigiFlare@test');
-Route::get('/list', 'DigiFlare@list');
-
+Route::get('/list', 'DigiFlare@list')->name('list');;
+Route::get('/resolved/{id}/', ['middleware' => 'auth', 'uses' =>'DigiFlare@resolved']);
+ 
 Route::post('/add_contact', 'ContactsController@create');
 Route::post('/edit_contact', 'ContactsController@edit');
 Route::post('/delete_contact', 'ContactsController@delete');

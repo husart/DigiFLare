@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Alerts;
+use App\User;
 class DigiFlare extends Controller
 {
     
@@ -57,6 +58,20 @@ class DigiFlare extends Controller
     }
     public function list(Request $request)
     {
+     	$user = User::first();
+     	//dd($user);
+ 	    $alerts = Alerts::where('status', '=', 1)->get();
 
+         return view('list', ['alerts' => $alerts, "user" => $user]);
+    }
+
+    public function resolved(Request $request)
+    {
+     	$id = $request->id;
+     	//dd($user);
+ 	    $alert = Alerts::where('id', '=', $id)->first();
+		$alert->status = 0;
+		$alert->update();
+		return redirect()->route('list');
     }
 }

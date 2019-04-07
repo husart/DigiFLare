@@ -13,18 +13,16 @@
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Operation</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($alerts as $alert)
             <tr class="data-row">
-                <td>{{$alert->name}}</td>
+                <td>{{$user->name}}</td>
                 <td>{{$alert->latitude}}</td>
                 <td>{{$alert->longitude}}</td>
                 <td>
-                    <a href="#editContactModal" class="edit edit-contact"  data-contact="{{$contact}}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                    
+                    <a href={{ url('resolved/'.$alert->id) }} class="btn btn-success">Resolved</a>
                 </td>
             </tr>
             @endforeach

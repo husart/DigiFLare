@@ -100,8 +100,10 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+
             @if (Route::has('login'))
                 <div class="top-right links">
+                     <a href="{{ route('list') }}">List</a>
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
                     @else
