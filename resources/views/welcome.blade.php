@@ -45,7 +45,7 @@
                 text-align: center;
             }
 
-            .title {
+            .fadein {
                 font-size: 84px;
                 -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
                 -moz-animation: fadein 2s; /* Firefox < 16 */
@@ -112,7 +112,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title m-b-md fadein">
                     DigiFlare
                 </div>
 
