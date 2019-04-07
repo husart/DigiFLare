@@ -14,9 +14,14 @@
                         </div>
                     @endif
 
-                    <ul class="dashboard-actions">
-                        <li>Contacts</li>
-                    </ul>
+                    <div id="dashboard-links">
+                        <ul class="dashboard-actions">
+                            <li>
+                                <i class="material-icons">account_box</i>
+                                <a href="{{ route('contacts') }}">Contacts</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

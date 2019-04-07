@@ -12,3 +12,17 @@ a.edit {
 a.delete {
     color: #cf0303;
 }
+
+#dashboard-links ul {
+    list-style-type: none;
+}
+
+#dashboard-links a {
+    color: #636b6f;
+    vertical-align: top;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
