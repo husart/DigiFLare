@@ -16,7 +16,7 @@ class CreateAlertsTable extends Migration
         Schema::create('alerts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('device_id')->unsigned();
-            $table->foreign('device_id')->references('device_id')->on('users');
+            //$table->foreign('device_id')->references('device_id')->on('users');
             $table->double('latitude', 10, 8);
             $table->double('longitude', 11, 8);
             $table->string('status', 3);
