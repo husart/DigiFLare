@@ -55,6 +55,7 @@ class DigiFlare extends Controller
 	            'longitude' => $lon
 
         	]);
+        	$this->sendEmailtoAll();
        }
        return "1";
     }
@@ -76,30 +77,33 @@ class DigiFlare extends Controller
 		$alert->update();
 		return redirect()->route('list');
     }
+    
+
     public function sendEmail() {
     	 $contacts = Contact::get();
     	 $toall = '';
- $alert = Alerts::where('status', '=', 1)->first();
+ 		 $alert = Alerts::where('status', '=', 1)->first();
+     	 foreach ($contacts as $key => $contact) {
+    	 	$to_name = $contact->name;
+			$to_email = $contact->email;
+			 return view('emails', ['contact' => $contact, 'alert' =>$alert]);
+    	 }
+    	
+
+    }
+    public function sendEmailtoAll() {
+    	 $contacts = Contact::get();
+    	 $toall = '';
+ 		 $alert = Alerts::where('status', '=', 1)->first();
      	 foreach ($contacts as $key => $contact) {
     	 	$to_name = $contact->name;
 			$to_email = $contact->email;
 			Mail::send('emails', ['contact' => $contact, 'alert' =>$alert], function ($m) use ($contact) {
 	            $m->from('digiflareor@gmail.com', 'Alert from DigiFLare');
-
 	            $m->to($contact->email, $contact->name)->subject('Alert from DigiFLare');
 	        });
-			//$data = array('name'=>"Sam Jose", "body" => "Test mail");
-			    
-			/*Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
-			    $message->to($to_email, $to_name)
-			            ->subject('SOmeone is lost');
-			    $message->from('FROM_EMAIL_ADDRESS','Artisans Web');
-			});*/
     	 }
-/*
-    	 Mail::to($request->user())
-    ->cc($moreUsers)
-    ->bcc($evenMoreUsers)
-    ->send(new OrderShipped($order));*/
+    	
+
     }
 }
