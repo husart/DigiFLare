@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Alerts;
 use App\User;
+use App\Contact;
+use Mail;
 class DigiFlare extends Controller
 {
     
@@ -73,5 +75,31 @@ class DigiFlare extends Controller
 		$alert->status = 0;
 		$alert->update();
 		return redirect()->route('list');
+    }
+    public function sendEmail() {
+    	 $contacts = Contact::get();
+    	 $toall = '';
+    	 foreach ($contacts as $key => $contact) {
+    	 	$to_name = $contact->name;
+			$to_email = $contact->email;
+			$alert = Alerts::where('status', '=', 1)->first();
+			Mail::send('emails', ['contact' => $contact, 'alert' =>$alert], function ($m) use ($contact) {
+	            $m->from('digiflareor@gmail.com', 'Alert from DigiFLare');
+
+	            $m->to($contact->email, $contact->name)->subject('Alert from DigiFLare');
+	        });
+			//$data = array('name'=>"Sam Jose", "body" => "Test mail");
+			    
+			/*Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+			    $message->to($to_email, $to_name)
+			            ->subject('SOmeone is lost');
+			    $message->from('FROM_EMAIL_ADDRESS','Artisans Web');
+			});*/
+    	 }
+/*
+    	 Mail::to($request->user())
+    ->cc($moreUsers)
+    ->bcc($evenMoreUsers)
+    ->send(new OrderShipped($order));*/
     }
 }

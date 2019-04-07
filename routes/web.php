@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/contacts', 'ContactsController@index')->name('contacts');;
 Route::get('/join', 'ContactsController@join_from_outside')->name('join');
 Route::get('/test', 'DigiFlare@test');
+Route::get('/sendEmail', 'DigiFlare@sendEmail');
 Route::get('/list', 'DigiFlare@list')->name('list');;
 Route::get('/resolved/{id}/', ['middleware' => 'auth', 'uses' =>'DigiFlare@resolved']);
  
