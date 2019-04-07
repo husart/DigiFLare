@@ -17,7 +17,12 @@ a.delete {
     list-style-type: none;
 }
 
-#dashboard-links a {
+#dashboard-links a,
+#dashboard-links a:link,
+#dashboard-links a:visited,
+#dashboard-links a:focus,
+#dashboard-links a:hover,
+#dashboard-links a:active {
     color: #636b6f;
     vertical-align: top;
     font-size: 15px;
