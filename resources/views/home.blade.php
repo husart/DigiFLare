@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <ul class="dashboard-actions">
+                        <li>Contacts</li>
+                    </ul>
                 </div>
             </div>
         </div>

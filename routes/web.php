@@ -17,5 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('contacts','ContactsController');
+
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test','DigiFlare@test');
+Route::get('/contacts', 'ContactsController@index')->name('contacts');;
+Route::get('/test', 'DigiFlare@test');
+
+Route::post('/add_contact', 'ContactsController@create');
+Route::post('/edit_contact', 'ContactsController@edit');
+Route::post('/delete_contact', 'ContactsController@delete');

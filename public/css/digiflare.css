@@ -1,0 +1,14 @@
+.required:after{ 
+    content:'*'; 
+    color:red; 
+    display:block;
+    float:right;
+}
+
+a.edit {
+    color: rgb(221, 166, 0);
+}
+
+a.delete {
+    color: #cf0303;
+}

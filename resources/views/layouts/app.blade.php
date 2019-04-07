@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/digiflare.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -76,5 +78,72 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+
+    <script>
+        $("#save-contact-btn").click(function() {
+            $.ajax({
+                type: 'post',
+                url: "{{ url('add_contact') }}",
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'name': $('input[name=name]').val(),
+                    'email': $('input[name=email]').val(),
+                    'phone': $('input[name=phone]').val(),
+                    'address': $('input[name=address]').val()
+                },
+                success: function(data) {
+                    window.location.reload();
+                },
+            });
+        });
+
+        $('.delete-contact').click(function(){
+            var ID = $(this).data('id');
+            $('#confirm-delete-contact-btn').data('id', ID); //set the data attribute on the modal button
+        });
+        $("#confirm-delete-contact-btn").click(function(e) {
+            var ID = $(this).data("id");
+            $.ajax({
+                type: 'post',
+                url: "{{ url('delete_contact') }}",
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'id': ID
+                },
+                success: function(data) {
+                    window.location.reload();
+                },
+            });
+        });
+
+        $('.edit-contact').on("click", function() {
+            var contactData = $(this).data("contact");
+            $('#confirm-save-edit-contact-btn').data('contactData', contactData); //set the data attribute on the modal button
+            $('input[name=edit-name]').val(contactData.name);
+            $('input[name=edit-email]').val(contactData.email);
+            $('input[name=edit-phone]').val(contactData.phone);
+            $('input[name=edit-address]').val(contactData.address);
+        });
+        $("#confirm-save-edit-contact-btn").click(function() {
+            var contactData = $(this).data("contactData");
+            $.ajax({
+                type: 'post',
+                url: "{{ url('edit_contact') }}",
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'id': contactData.id,
+                    'name': $('input[name=edit-name]').val(),
+                    'email': $('input[name=edit-email]').val(),
+                    'phone': $('input[name=edit-phone]').val(),
+                    'address': $('input[name=edit-address]').val()
+                },
+                success: function(data) {
+                    window.location.reload();
+                },
+            });
+        });
+        
+    </script>
 </body>
 </html>
